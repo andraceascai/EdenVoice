@@ -1,13 +1,11 @@
 import "./NavBar.css";
+import logo from "/src/assets/edenred-vector-logo.svg";
 
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg" id="navbar">
       <a className="navbar-brand" href="#">
-        <img
-          src="/src/assets/edenred-vector-logo.svg"
-          className="edenred-logo"
-        />
+        <img src={logo} className="edenred-logo" />
       </a>
       <button
         className="navbar-toggler"
