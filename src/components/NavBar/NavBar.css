@@ -5,6 +5,10 @@
     transition: font-weight 0.3s ease;
 }
 
+.navbar-nav > li{
+    padding-right:25px;
+  }
+
 .navbar-nav .nav-link {
     position: relative; 
     text-decoration: none; 
