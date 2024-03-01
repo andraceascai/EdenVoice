@@ -1,0 +1,44 @@
+#edenred-style {
+    color: #f72717;
+    font-weight: 500;
+    font-size: 4.5vh;
+    transition: font-weight 0.3s ease;
+}
+
+.navbar-nav .nav-link {
+    position: relative; 
+    text-decoration: none; 
+  }
+  
+  .navbar-nav .nav-link::after {
+    content: '';
+    display: block;
+    width: 0; 
+    height: 3px; 
+    border-radius: 50px;
+    background: currentColor; 
+    transition: width 0.3s ease-out; 
+    position: absolute;
+    left: 0;
+    bottom: 1px; 
+  }
+
+  #edenred-style:hover {
+    font-weight: bold; 
+  }
+  
+  .navbar-nav .nav-link:hover::after {
+    width: 100%; 
+  }
+
+
+#navbar{
+    background-color: rgba(211, 59, 48, 0.194);
+    margin: 0px 5px 5px 5px;
+    border-radius: 30px;
+}
+
+.edenred-logo{
+    width: 12vw;
+    height: 9vh;
+}
