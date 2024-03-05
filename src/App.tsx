@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/home" element={<Home />} />
-          <Route path="/post" element={<Post />} />
+          <Route path="edenvoice.azurewebsites.net/post" element={<Post />} />
           <Route path="/explore" element={<ExploreIdeas />} />
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>

@@ -26,7 +26,11 @@ const NavBar = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" id="edenred-style" href="/post">
+            <a
+              className="nav-link"
+              id="edenred-style"
+              href="edenvoice.azurewebsites.net/post"
+            >
               Post
             </a>
           </li>
