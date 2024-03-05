@@ -1,12 +1,14 @@
+import { useNavigate } from "react-router";
 import Animation from "../Animation/Animation";
 import NavBar from "../NavBar/NavBar";
 import "./Home.css";
 
 const Home = () => {
+  let navigate = useNavigate();
   return (
     <>
-      <NavBar />
       <div className="area">
+        <NavBar />
         <Animation />
 
         <div className="title">
@@ -23,7 +25,9 @@ const Home = () => {
         </div>
 
         <div className="button">
-          <button className="button-home">Submit your idea</button>
+          <button className="button-home" onClick={() => navigate("/post")}>
+            Submit your idea
+          </button>
         </div>
 
         <div>

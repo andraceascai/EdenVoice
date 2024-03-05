@@ -4,7 +4,7 @@ import logo from "/src/assets/edenred-vector-logo.svg";
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg" id="navbar">
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" href="/home">
         <img src={logo} className="edenred-logo" />
       </a>
       <button
@@ -21,17 +21,17 @@ const NavBar = () => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item active">
-            <a className="nav-link" id="edenred-style" href="#">
+            <a className="nav-link" id="edenred-style" href="/home">
               Home
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" id="edenred-style" href="#">
+            <a className="nav-link" id="edenred-style" href="/post">
               Post
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" id="edenred-style" href="#">
+            <a className="nav-link" id="edenred-style" href="/explore">
               Explore Ideas
             </a>
           </li>
