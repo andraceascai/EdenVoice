@@ -12,7 +12,7 @@
     background: #f72717;
     float: right;
     border-radius: 45px 0px 0px 45px;
-    margin-top: 7vw;
+    margin-top: 0vw;
     margin-right: 0;
     position: relative;
     box-shadow: 1vw 1.5vw 1vw gray;
@@ -41,7 +41,9 @@
     color: #f72717;
     font-size: 1.6vmax;
     padding: 22vh 5vh 0vh 21vh;
-    width: 70vw;
+    width: 90vw;
+    margin-right: auto;
+    text-align: center;
 }
 
 .button-home {

@@ -31,3 +31,7 @@
     margin-right: auto;
     background-color: rgba(170, 125, 124, 0.288);
 }
+
+#form:focus{
+    box-shadow: none;
+}

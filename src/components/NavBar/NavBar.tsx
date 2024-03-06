@@ -26,15 +26,6 @@ const NavBar = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a
-              className="nav-link"
-              id="edenred-style"
-              href="edenvoice.azurewebsites.net/post"
-            >
-              Post
-            </a>
-          </li>
-          <li className="nav-item">
             <a className="nav-link" id="edenred-style" href="/explore">
               Explore Ideas
             </a>

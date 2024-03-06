@@ -1,26 +1,13 @@
-import Animation from "../Animation/Animation";
-import NavBar from "../NavBar/NavBar";
 import bec from "../../assets/bec.png";
 import "./Post.css";
 
 const Post = () => {
   return (
     <>
-      <NavBar />
-      <Animation />
       <div className="post-text">
         <span>
           Tell us what's on your mind
-          <img
-            src={bec}
-            id="lightbulb"
-            // style={{
-            //   width: "9vw",
-            //   height: "auto",
-            //   marginInlineStart: 10,
-            //   marginBottom: 10,
-            // }}
-          />
+          <img src={bec} id="lightbulb" />
         </span>
       </div>
 

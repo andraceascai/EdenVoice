@@ -20,10 +20,12 @@
 
 .ideas-description{
     padding-top: 3.5vw;
-    font-size: 1.5vw;
+    font-size: 1.7vw;
     padding-left: 7vw;
     padding-right: 2vw;
     text-align: center;
+    color: #f72717;
+    font-family: Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .container{

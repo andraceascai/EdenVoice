@@ -1,10 +1,9 @@
-import { useNavigate } from "react-router";
 import Animation from "../Animation/Animation";
 import NavBar from "../NavBar/NavBar";
 import "./Home.css";
+import Post from "../Post/Post";
 
 const Home = () => {
-  let navigate = useNavigate();
   return (
     <>
       <div className="area">
@@ -16,19 +15,15 @@ const Home = () => {
         </div>
 
         <div className="description">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime
-          cumque quaerat officia perferendis quidem, at voluptatum optio id!
-          Sapiente commodi id dolores aliquid cumque, atque alias dolore quasi
-          nulla recusandae? Quis, sed magnam. Repellat qui perspiciatis, fuga
-          voluptatum, eveniet corrupti libero vel magnam voluptates incidunt
-          nemo obcaecati. Vitae, neque tempora!
+          Welcome to EdenVoice, your digital town hall! This is a collaborative
+          space for all employees to share, vote on, and elevate innovative
+          ideas that can shape the future of our company. Here, every voice
+          matters, and every suggestion is a potential game-changer. Let's
+          co-create, inspire progress, and turn our collective vision into
+          reality. Share your idea by submitting it in the form below!
         </div>
 
-        <div className="button">
-          <button className="button-home" onClick={() => navigate("/post")}>
-            Submit your idea
-          </button>
-        </div>
+        <Post />
 
         <div>
           <img src="/src/assets/mic.png" alt="" className="mic" />
