@@ -1,5 +1,5 @@
 import "./NavBar.css";
-import logo from "/src/assets/edenred-vector-logo.svg";
+import logo from "/src/frontendAssets/edenred-vector-logo.svg";
 
 const NavBar = () => {
   return (

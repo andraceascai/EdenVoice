@@ -1,4 +1,4 @@
-import bec from "../../assets/bec.png";
+import bec from "../../frontendAssets/bec.png";
 import "./Post.css";
 
 const Post = () => {

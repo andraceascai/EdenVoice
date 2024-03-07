@@ -1,7 +1,8 @@
 import Animation from "../Animation/Animation";
 import NavBar from "../NavBar/NavBar";
-import "./Home.css";
 import Post from "../Post/Post";
+import mic from "../../frontendAssets/mic.png";
+import "./Home.css";
 
 const Home = () => {
   return (
@@ -26,7 +27,7 @@ const Home = () => {
         <Post />
 
         <div>
-          <img src="/src/assets/mic.png" alt="" className="mic" />
+          <img src={mic} alt="" className="mic" />
         </div>
       </div>
     </>
