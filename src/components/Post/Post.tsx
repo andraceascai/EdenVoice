@@ -8,9 +8,12 @@ const Post = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/posts", {
-        content: text,
-      });
+      const response = await axios.post(
+        "https://edenvoice-backend.azurewebsites.net/api/posts",
+        {
+          content: text,
+        }
+      );
       console.log("Post created:", response.data);
       setText("");
     } catch (error) {
