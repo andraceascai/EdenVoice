@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router";
 import bec from "../../frontendAssets/bec.png";
 import "./Post.css";
 
 const Post = () => {
   const [text, setText] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
@@ -16,6 +18,7 @@ const Post = () => {
       );
       console.log("Post created:", response.data);
       setText("");
+      navigate("/explore");
     } catch (error) {
       console.error("Error creating post:", error);
     }

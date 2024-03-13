@@ -1,4 +1,10 @@
-const Idea = () => {
+interface IdeaProps {
+  content: string;
+  votes: number;
+  date: string;
+}
+
+const Idea = ({ content, votes, date }: IdeaProps) => {
   return (
     <>
       <div className="content">
@@ -7,13 +13,13 @@ const Idea = () => {
             Vote
           </button>
           <div className="post">
-            <p>My best idea</p>
+            <p>{content}</p>
           </div>
           <div className="votes">
             <p>
-              Votes: 69
+              Votes: {votes}
               <br />
-              Date: 04.03.2024
+              Date: {date}
             </p>
           </div>
         </div>

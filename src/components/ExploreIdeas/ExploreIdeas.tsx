@@ -1,8 +1,34 @@
+import { useEffect, useState } from "react";
 import Idea from "../Ideas/Idea";
 import NavBar from "../NavBar/NavBar";
 import "./ExploreIdeas.css";
+import axios from "axios";
+
+interface Idea {
+  _id: number;
+  postId: number;
+  content: string;
+  date: string;
+  votes: number;
+  whoVoted: string[];
+}
 
 const ExploreIdeas = () => {
+  const [ideas, setIdeas] = useState<Idea[]>([]);
+
+  useEffect(() => {
+    const fetchIdeas = async () => {
+      try {
+        const response = await axios.get(
+          "https://test-edenvoice.azurewebsites.net/api/posts"
+        );
+        setIdeas(response.data);
+      } catch (error) {
+        console.error("Error fetching ideas:", error);
+      }
+    };
+    fetchIdeas();
+  }, []);
   return (
     <>
       <NavBar />
@@ -28,11 +54,14 @@ const ExploreIdeas = () => {
             <option value="LeastVotes">Least number of votes</option>
           </select>
         </div>
-        <Idea />
-        <Idea />
-        <Idea />
-        <Idea />
-        <Idea />
+        {ideas.map((idea) => (
+          <Idea
+            key={idea._id}
+            content={idea.content}
+            votes={idea.votes}
+            date={idea.date}
+          />
+        ))}
       </div>
     </>
   );
