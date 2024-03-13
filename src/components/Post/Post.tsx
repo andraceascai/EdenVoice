@@ -9,7 +9,7 @@ const Post = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "https://edenvoice-backend.azurewebsites.net/api/posts",
+        "https://test-edenvoice.azurewebsites.net/api/posts",
         {
           content: text,
         }
