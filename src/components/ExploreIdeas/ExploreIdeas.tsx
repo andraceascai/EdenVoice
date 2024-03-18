@@ -50,13 +50,9 @@ const ExploreIdeas = () => {
         let fetchedIdeas = [...response.data];
 
         if (sortOrder === "Oldest") {
-          fetchedIdeas.sort(
-            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-          );
+          fetchedIdeas.sort((a, b) => a.date.localeCompare(b.date));
         } else if (sortOrder === "MostRecent") {
-          fetchedIdeas.sort(
-            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-          );
+          fetchedIdeas.sort((a, b) => b.date.localeCompare(a.date));
         } else if (sortOrder === "MostVotes") {
           fetchedIdeas.sort((a, b) => b.votes - a.votes);
         } else if (sortOrder === "LeastVotes") {
