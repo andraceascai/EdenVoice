@@ -30,6 +30,11 @@ const NavBar = () => {
               Explore Ideas
             </a>
           </li>
+          <li className="nav-item">
+            <a className="nav-link" id="edenred-style" href="/contact">
+              Contact
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
