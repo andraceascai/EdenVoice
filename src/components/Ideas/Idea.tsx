@@ -1,15 +1,17 @@
 interface IdeaProps {
+  _id: string;
   content: string;
   votes: number;
   date: string;
+  onVote: (id: string) => void;
 }
 
-const Idea = ({ content, votes, date }: IdeaProps) => {
+const Idea = ({ _id, content, votes, date, onVote }: IdeaProps) => {
   return (
     <>
       <div className="content">
         <div className="container">
-          <button type="button" className="vote">
+          <button type="button" className="vote" onClick={() => onVote(_id)}>
             Vote
           </button>
           <div className="post">

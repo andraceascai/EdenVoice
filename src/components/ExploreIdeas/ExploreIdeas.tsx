@@ -5,7 +5,7 @@ import "./ExploreIdeas.css";
 import axios from "axios";
 
 interface Idea {
-  _id: number;
+  _id: string;
   postId: number;
   content: string;
   date: string;
@@ -15,6 +15,26 @@ interface Idea {
 
 const ExploreIdeas = () => {
   const [ideas, setIdeas] = useState<Idea[]>([]);
+  const [sortDateOrder, setSortDateOrder] = useState("MostRecent");
+
+  const handleDateSortChange = (dateOrder: string) => {
+    setSortDateOrder(dateOrder);
+  };
+
+  const handleVotes = async (id: string) => {
+    try {
+      const response = await axios.put(
+        `https://test-edenvoice.azurewebsites.net/api/posts/${id}/vote`
+      );
+      setIdeas((prevIdeas) =>
+        prevIdeas.map((idea) =>
+          idea._id === id ? { ...idea, votes: response.data.votes } : idea
+        )
+      );
+    } catch (error) {
+      console.error("Error voting on idea:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchIdeas = async () => {
@@ -22,13 +42,18 @@ const ExploreIdeas = () => {
         const response = await axios.get(
           "https://test-edenvoice.azurewebsites.net/api/posts"
         );
-        setIdeas(response.data);
+        let sortedIdeasbyDate = response.data;
+        if (sortDateOrder === "Oldest") {
+          setIdeas(sortedIdeasbyDate);
+        } else {
+          setIdeas(sortedIdeasbyDate.reverse());
+        }
       } catch (error) {
         console.error("Error fetching ideas:", error);
       }
     };
     fetchIdeas();
-  }, []);
+  }, [sortDateOrder]);
   return (
     <>
       <NavBar />
@@ -47,19 +72,22 @@ const ExploreIdeas = () => {
             aria-label="Default select example"
             name="cars"
             id="sort"
+            onChange={(e) => handleDateSortChange(e.target.value)}
           >
-            <option value="Oldest">Oldest</option>
             <option value="MostRecent">Most Recent</option>
+            <option value="Oldest">Oldest</option>
             <option value="MostVotes">Most number of votes</option>
             <option value="LeastVotes">Least number of votes</option>
           </select>
         </div>
         {ideas.map((idea) => (
           <Idea
+            _id={idea._id}
             key={idea._id}
             content={idea.content}
             votes={idea.votes}
             date={idea.date}
+            onVote={() => handleVotes(idea._id)}
           />
         ))}
       </div>
