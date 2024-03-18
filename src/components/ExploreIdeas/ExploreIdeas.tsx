@@ -14,7 +14,6 @@ interface Idea {
 }
 
 const ExploreIdeas = () => {
-  const [ideas, setIdeas] = useState<Idea[]>([]);
   const [displayedIdeas, setDisplayedIdeas] = useState<Idea[]>([]);
   const [sortOrder, setSortOrder] = useState("MostRecent");
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,7 +31,7 @@ const ExploreIdeas = () => {
       const response = await axios.put(
         `https://test-edenvoice.azurewebsites.net/api/posts/${id}/vote`
       );
-      setIdeas((prevIdeas) =>
+      setDisplayedIdeas((prevIdeas) =>
         prevIdeas.map((idea) =>
           idea._id === id ? { ...idea, votes: response.data.votes } : idea
         )
@@ -64,12 +63,11 @@ const ExploreIdeas = () => {
           fetchedIdeas.sort((a, b) => a.votes - b.votes);
         }
 
-        const filteredIdeas = fetchedIdeas.filter((idea) =>
+        fetchedIdeas = fetchedIdeas.filter((idea) =>
           idea.content.toLowerCase().includes(searchTerm.toLowerCase())
         );
 
-        setIdeas(fetchedIdeas);
-        setDisplayedIdeas(filteredIdeas);
+        setDisplayedIdeas(fetchedIdeas);
       } catch (error) {
         console.error("Error fetching ideas:", error);
       }
