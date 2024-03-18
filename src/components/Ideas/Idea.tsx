@@ -1,3 +1,5 @@
+import "./Idea.css";
+
 interface IdeaProps {
   _id: string;
   content: string;
@@ -24,6 +26,9 @@ const Idea = ({ _id, content, votes, date, onVote }: IdeaProps) => {
               Date: {date}
             </p>
           </div>
+          <button type="button" className="comment">
+            Comment
+          </button>
         </div>
       </div>
     </>
