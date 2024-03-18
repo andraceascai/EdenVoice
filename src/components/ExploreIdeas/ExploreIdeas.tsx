@@ -15,10 +15,10 @@ interface Idea {
 
 const ExploreIdeas = () => {
   const [ideas, setIdeas] = useState<Idea[]>([]);
-  const [sortDateOrder, setSortDateOrder] = useState("MostRecent");
+  const [sortOrder, setSortOrder] = useState("MostRecent");
 
-  const handleDateSortChange = (dateOrder: string) => {
-    setSortDateOrder(dateOrder);
+  const handleSort = (sortCondition: string) => {
+    setSortOrder(sortCondition);
   };
 
   const handleVotes = async (id: string) => {
@@ -42,18 +42,22 @@ const ExploreIdeas = () => {
         const response = await axios.get(
           "https://test-edenvoice.azurewebsites.net/api/posts"
         );
-        let sortedIdeasbyDate = response.data;
-        if (sortDateOrder === "Oldest") {
-          setIdeas(sortedIdeasbyDate);
-        } else {
-          setIdeas(sortedIdeasbyDate.reverse());
+        let sortedIdeas = [...response.data];
+        if (sortOrder === "Oldest") {
+          setIdeas(sortedIdeas);
+        } else if (sortOrder === "MostRecent") {
+          setIdeas(sortedIdeas.reverse());
+        } else if (sortOrder === "MostVotes") {
+          setIdeas(sortedIdeas.sort((a, b) => b.votes - a.votes));
+        } else if (sortOrder === "LeastVotes") {
+          setIdeas(sortedIdeas.sort((a, b) => a.votes - b.votes));
         }
       } catch (error) {
         console.error("Error fetching ideas:", error);
       }
     };
     fetchIdeas();
-  }, [sortDateOrder]);
+  }, [sortOrder]);
   return (
     <>
       <NavBar />
@@ -72,7 +76,7 @@ const ExploreIdeas = () => {
             aria-label="Default select example"
             name="cars"
             id="sort"
-            onChange={(e) => handleDateSortChange(e.target.value)}
+            onChange={(e) => handleSort(e.target.value)}
           >
             <option value="MostRecent">Most Recent</option>
             <option value="Oldest">Oldest</option>
