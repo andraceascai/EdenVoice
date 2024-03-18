@@ -15,10 +15,16 @@ interface Idea {
 
 const ExploreIdeas = () => {
   const [ideas, setIdeas] = useState<Idea[]>([]);
+  const [displayedIdeas, setDisplayedIdeas] = useState<Idea[]>([]);
   const [sortOrder, setSortOrder] = useState("MostRecent");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSort = (sortCondition: string) => {
     setSortOrder(sortCondition);
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
   };
 
   const handleVotes = async (id: string) => {
@@ -42,22 +48,35 @@ const ExploreIdeas = () => {
         const response = await axios.get(
           "https://test-edenvoice.azurewebsites.net/api/posts"
         );
-        let sortedIdeas = [...response.data];
+        let fetchedIdeas = [...response.data];
+
         if (sortOrder === "Oldest") {
-          setIdeas(sortedIdeas);
+          fetchedIdeas.sort(
+            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+          );
         } else if (sortOrder === "MostRecent") {
-          setIdeas(sortedIdeas.reverse());
+          fetchedIdeas.sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+          );
         } else if (sortOrder === "MostVotes") {
-          setIdeas(sortedIdeas.sort((a, b) => b.votes - a.votes));
+          fetchedIdeas.sort((a, b) => b.votes - a.votes);
         } else if (sortOrder === "LeastVotes") {
-          setIdeas(sortedIdeas.sort((a, b) => a.votes - b.votes));
+          fetchedIdeas.sort((a, b) => a.votes - b.votes);
         }
+
+        const filteredIdeas = fetchedIdeas.filter((idea) =>
+          idea.content.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        setIdeas(fetchedIdeas);
+        setDisplayedIdeas(filteredIdeas);
       } catch (error) {
         console.error("Error fetching ideas:", error);
       }
     };
+
     fetchIdeas();
-  }, [sortOrder]);
+  }, [sortOrder, searchTerm]);
   return (
     <>
       <NavBar />
@@ -84,7 +103,15 @@ const ExploreIdeas = () => {
             <option value="LeastVotes">Least number of votes</option>
           </select>
         </div>
-        {ideas.map((idea) => (
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search ideas..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
+        {displayedIdeas.map((idea) => (
           <Idea
             _id={idea._id}
             key={idea._id}
