@@ -65,20 +65,22 @@
 }
 
 .votes{
+    display: flex;
+    justify-content: center;
+    align-items: center;  
     width: 20vw;
     height: 3.3vw;
     background-color: white;
-    box-shadow: -0.5vw 0.8vw 1.3vw rgb(210, 205, 205);
     border-radius: 10vw;
     font-size: 0.8vw;
-    text-align: center;
-    margin-right: 23%;
+    margin-right: 1vw;
     position: relative; 
     float: right;
     border-style: solid;
-    border-color: #9793927b;
+    border-color: rgba(211, 59, 48, 0.345);
     border-width: 0.2vw;
 }
+
 
 .post{
     display: inline-block;    

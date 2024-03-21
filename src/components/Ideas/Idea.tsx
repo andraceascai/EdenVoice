@@ -18,13 +18,13 @@ const Idea = ({ _id, content, votes, date, onVote }: IdeaProps) => {
           </button>
           <div className="post">
             <p>{content}</p>
-          </div>
-          <div className="votes">
-            <p>
-              Votes: {votes}
-              <br />
-              Date: {date}
-            </p>
+            <div className="votes">
+              <p>
+                Votes: {votes}
+                <br />
+                Date: {date}
+              </p>
+            </div>
           </div>
           <button type="button" className="comment">
             Comment
