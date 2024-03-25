@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Idea from "../Ideas/Idea";
 import NavBar from "../NavBar/NavBar";
-import "./ExploreIdeas.css";
 import axios from "axios";
+import "./ExploreIdeas.css";
 
 interface Idea {
   _id: string;
