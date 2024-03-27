@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Comments.css";
 import axios from "axios";
 
@@ -27,6 +27,31 @@ const CommentForm = ({
   closeForm,
 }: CommentFormProps) => {
   const [text, setText] = useState("");
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://edenvoice.azurewebsites.net/.auth/me"
+        );
+        const userData = response.data;
+        if (userData && userData.length > 0) {
+          const userName = userData[0].user_claims.find(
+            (c: { typ: string }) => c.typ === "name"
+          )?.val;
+          const userEmail = userData[0].user_id;
+
+          console.log("User name:", userName);
+          console.log("User email:", userEmail);
+          setUserName(userName);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleSubmit = async (postId: string, text: string) => {
     try {
@@ -46,6 +71,7 @@ const CommentForm = ({
   };
   return (
     <>
+      <div>Your username is {userName}</div>
       <textarea
         className="comment-form-textarea"
         value={text}
