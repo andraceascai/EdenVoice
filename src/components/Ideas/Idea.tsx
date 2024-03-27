@@ -25,6 +25,7 @@ const Idea = ({ _id, content, votes, whoVoted, date, onVote }: IdeaProps) => {
   const [comments, setComments] = useState<Comments[]>([]);
   const [showComments, setShowComments] = useState(false);
   const [userEmail, setUserEmail] = useState("");
+  const [hasVoted, setHasVoted] = useState(whoVoted.includes(userEmail));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,13 +63,20 @@ const Idea = ({ _id, content, votes, whoVoted, date, onVote }: IdeaProps) => {
     setComments([newComment, ...comments]);
   };
 
-  const hasVoted = whoVoted.includes(userEmail);
+  const handleVoteClick = () => {
+    setHasVoted(!hasVoted);
+    onVote(_id);
+  };
+
+  useEffect(() => {
+    setHasVoted(whoVoted.includes(userEmail));
+  }, [whoVoted, userEmail]);
 
   return (
     <>
       <div className="content">
         <div className="container">
-          <button type="button" className="vote" onClick={() => onVote(_id)}>
+          <button type="button" className="vote" onClick={handleVoteClick}>
             {hasVoted ? "Unvote" : "Vote"}
           </button>
           <div className="post">
