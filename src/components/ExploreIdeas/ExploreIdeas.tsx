@@ -17,6 +17,7 @@ const ExploreIdeas = () => {
   const [displayedIdeas, setDisplayedIdeas] = useState<Idea[]>([]);
   const [sortOrder, setSortOrder] = useState("MostRecent");
   const [searchTerm, setSearchTerm] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
   const handleSort = (sortCondition: string) => {
     setSortOrder(sortCondition);
@@ -26,10 +27,31 @@ const ExploreIdeas = () => {
     setSearchTerm(event.target.value);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://edenvoice.azurewebsites.net/.auth/me"
+        );
+        const userData = response.data;
+        if (userData && userData.length > 0) {
+          const userEmail = userData[0].user_id;
+          setUserEmail(userEmail);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const handleVotes = async (id: string) => {
     try {
       const response = await axios.put(
-        `https://test-edenvoice.azurewebsites.net/api/posts/${id}/vote`
+        `https://test-edenvoice.azurewebsites.net/api/posts/${id}/vote`,
+        {
+          userEmail: userEmail,
+        }
       );
       setDisplayedIdeas((prevIdeas) =>
         prevIdeas.map((idea) =>

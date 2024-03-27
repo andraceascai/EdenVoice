@@ -40,10 +40,6 @@ const CommentForm = ({
           const userName = userData[0].user_claims.find(
             (c: { typ: string }) => c.typ === "name"
           )?.val;
-          const userEmail = userData[0].user_id;
-
-          console.log("User name:", userName);
-          console.log("User email:", userEmail);
           setUserName(userName);
         }
       } catch (error) {
