@@ -60,6 +60,7 @@ const CommentForm = ({
         {
           body: text,
           parentId: parentId,
+          userName: userName,
         }
       );
       setText("");
@@ -71,7 +72,6 @@ const CommentForm = ({
   };
   return (
     <>
-      <div>Your username is {userName}</div>
       <textarea
         className="comment-form-textarea"
         value={text}
