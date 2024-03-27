@@ -30,7 +30,7 @@ const CommentsList = ({ comments, _id, addComment }: CommentsListProps) => {
   return (
     <>
       <div className="comments">
-        <h5 className="comments-title">Comments</h5>
+        <h5 className="comments-title">Comments ({comments.length})</h5>
         <div className="comment-form-title">Leave a comment</div>
         <CommentForm
           submitLabel="Comment"

@@ -133,6 +133,7 @@ const ExploreIdeas = () => {
             key={idea._id}
             content={idea.content}
             votes={idea.votes}
+            whoVoted={idea.whoVoted}
             date={idea.date}
             onVote={() => handleVotes(idea._id)}
           />
